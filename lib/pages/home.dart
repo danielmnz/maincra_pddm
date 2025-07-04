@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maincra_api/entity/item.dart';
-import 'package:maincra_api/services/item_api.dart';
+import 'package:maincra_api/core/image_decoration.dart';
 
 class Pantalla1 extends StatefulWidget {
   const Pantalla1({super.key});
@@ -10,16 +10,17 @@ class Pantalla1 extends StatefulWidget {
 }
 
 class _Pantalla1State extends State<Pantalla1> {
-  late Future<Item> futureItem;
+  late Future<bool> futureItem;
 
   late TextEditingController searchController;
-
 
   @override
   void initState() {
     super.initState();
     searchController = TextEditingController();
-    futureItem = fetchItem("Acacia Boat");
+    futureItem = checkIfEmpty();
+    // futureItem = fetchItem("Acacia Boat");
+    // print(futureItem);
   }
 
   @override
@@ -38,6 +39,7 @@ class _Pantalla1State extends State<Pantalla1> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
+              controller: searchController,
               decoration: InputDecoration(
                 hintText: "Buscar Item lol xd omg en plan holy shit", // lol
                 hintStyle: TextStyle(color: Colors.white),
@@ -49,41 +51,46 @@ class _Pantalla1State extends State<Pantalla1> {
           Padding(
             padding: const EdgeInsets.all(16),
             child: Container(
-              decoration: BoxDecoration(
-                border: Border.all()
-              ),
+              decoration: BoxDecoration(border: Border.all()),
               child: TextButton(
                 child: const Text("Buscar item"),
                 onPressed: () {
-                  futureItem = fetchItem(searchController.text);
-                }, 
+                  // futureItem = fetchItem(searchController.text);
+                },
               ),
             ),
           ),
 
-          FutureBuilder<Item>(
+          FutureBuilder(
             future: futureItem,
             builder: (context, snapshot) {
+              print(snapshot);
               if (snapshot.hasData) {
                 return Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Image.network(snapshot.data!.image),
-                        Padding(
-                          padding: const EdgeInsets.all(4),
-                          child: Text(snapshot.data!.name),
-                        ),
-                      ],
-                    ),
+                  child: Column(
+                    children: [
+                      // Text("${items.length}")
+                      Image.network(items[1].image),
+                      Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: Container(
+                          decoration: ImageDecoration.fit,
+                          child: Text(items[1].name,
+                          )),
+                      ),
+                    ],
                   ),
                 );
               } else {
-                return Card(child: Text("${snapshot.error}"));
+                return Card(
+                  child: Text(
+                    "${snapshot.error}",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                );
               }
             },
-          )
+          ),
         ],
       ),
     );
