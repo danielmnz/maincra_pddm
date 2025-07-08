@@ -59,21 +59,30 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/
+    - assets/loading_item.gif
+    - assets/item_not_found.png
+    - assets/chest.png
+    - assets/crafting_table.png
+    - assets/ender_chest.png
+    - assets/furnace.png
+    - assets/grass_block.png
+    - assets/item-bg.png
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/to/resolution-aware-images
+  fonts:
+    - family: Mojangles
+      fonts:
+        - asset: assets/fonts/Mojangles-Regular.otf
+        - asset: assets/fonts/Mojangles-Bold.otf
+          weight: 700
+        - asset: assets/fonts/Mojangles-Italic.otf
+          style: italic
+        - asset: assets/fonts/Mojangles-BoldItalic.otf
+          weight: 700
+          style: italic
 
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/to/asset-from-package
 
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   # fonts:
   #   - family: Schyler
   #     fonts:

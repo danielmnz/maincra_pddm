@@ -12,7 +12,7 @@ class Block {
   final bool flammable;
   final bool transparent;
   final int luminance;
-  final int blastResistance;
+  final double blastResistance;
 
   const Block({
     required this.name,
@@ -39,7 +39,7 @@ class Block {
         "flammable": bool flammable,
         "transparent": bool transparent,
         "luminance": int luminance,
-        "blastResistance": int blastResistance
+        "blastResistance": double blastResistance
       } => Block(name: name, nameSpaceId: nameSpaceId, description: description, image: image, item: item, tool: tool, flammable: flammable, transparent: transparent, luminance: luminance, blastResistance: blastResistance),
       _ => throw const FormatException("Failed to load block."),
     };

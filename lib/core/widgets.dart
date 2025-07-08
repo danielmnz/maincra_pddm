@@ -1,0 +1,23 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+class AppCustomWidget {
+  static Image loadingImage = Image.asset("assets/loading_item.gif");
+
+  static Column loadingData = Column(
+    children: [
+      ConstrainedBox(
+        constraints: BoxConstraints.tight(Size.square(100)),
+        child: loadingImage
+      ),
+      const Text("Loading data, please wait...")
+    ],
+  );
+  static Image itemSlot = Image.asset(
+    "assets/item-bg.png",
+      width: double.maxFinite,
+      height: double.maxFinite,
+      filterQuality: FilterQuality.none,
+      fit: BoxFit.contain,
+    );
+}

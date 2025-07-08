@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:maincra_api/core/text_style.dart';
 import 'package:maincra_api/pages/home.dart';
-import 'package:maincra_api/services/item_api.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -9,22 +10,27 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    loadAPI();
-
     return MaterialApp(
-      debugShowCheckedModeBanner: false, //quitar debug
+      debugShowCheckedModeBanner: false,
       title: 'MaincraApp',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: Color(0xFFC6C6C6),
+        appBarTheme: AppBarTheme(
+          toolbarHeight: 70,
+          centerTitle: true,
+          titleTextStyle: TextStyles.appBarTitle,
+          backgroundColor: Color(0xFFC6C6C6),
+          foregroundColor: Colors.white,
+          elevation: 8,
+          shadowColor: Colors.black
+        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        fontFamily: "Mojangles",
       ),
-      home: Pantalla1(),
+      home: Home(),
     );
   }
 }
 
-Future<void> loadAPI() async {
-  await fetchItems();
-}

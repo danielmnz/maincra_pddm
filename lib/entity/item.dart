@@ -2,18 +2,6 @@ library;
 
 List<Item> items = [];
 
-bool doneLoading = false;
-
-void finishLoading() => doneLoading = true;
-
-Future<bool> checkIfEmpty() async {
-  if (doneLoading) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
 class Item {
   final String name;
   final String nameSpaceId;

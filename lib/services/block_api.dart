@@ -13,3 +13,29 @@ Future<Block> fetchBlock() async {
     throw Exception("Failed to load block.");
   }
 }
+
+Future<Block> fetchSingleBlock(String name) async {
+  final response = await http.get(Uri.parse("https://minecraft-api.vercel.app/api/blocks?name=$name"));
+
+  if (response.statusCode == 200) {
+    dynamic json = jsonDecode(response.body);
+    if (json.isNotEmpty) {
+      return Block(
+        name: json[0]["name"], 
+        nameSpaceId: json[0]["namespacedId"], 
+        description: json[0]["description"], 
+        image: json[0]["image"], 
+        item: json[0]["item"], 
+        tool: json[0]["tool"].toString(), 
+        flammable: json[0]["flammable"], 
+        transparent: json[0]["transparent"], 
+        luminance: json[0]["luminance"], 
+        blastResistance: double.parse(json[0]["blastResistance"].toString()), 
+      );
+    } else {
+      return Block(name: 'NotPlaceable', nameSpaceId: 'nameSpaceId', description: 'description', image: 'image', item: 'item', tool: 'tool', flammable: true, transparent: true, luminance: 0, blastResistance: 0);
+    }
+  } else {
+    throw Exception("Failted to get specified Block");
+  }
+}

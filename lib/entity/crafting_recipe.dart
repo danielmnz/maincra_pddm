@@ -1,13 +1,12 @@
+library;
 
-
-
-
+List<CraftingRecipe> craftingRecipes = [];
 
 class CraftingRecipe {
   final String item;
   final int quantity;
   final bool shapeless;
-  final List<String> recipe;
+  final List<dynamic> recipe;
 
   const CraftingRecipe({
     required this.item,
@@ -22,7 +21,7 @@ class CraftingRecipe {
         "item": String item,
         "quantity": int quantity,
         "shapeless": bool shapeless,
-        "recipe": List<String> recipe,
+        "recipe": List<dynamic> recipe,
       } => CraftingRecipe(item: item, quantity: quantity, shapeless: shapeless, recipe: recipe),
       _ => throw const FormatException("Failed to load Crafting Recipe.")
     };

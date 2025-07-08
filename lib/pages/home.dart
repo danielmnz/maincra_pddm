@@ -1,98 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:maincra_api/entity/item.dart';
-import 'package:maincra_api/core/image_decoration.dart';
+import 'package:maincra_api/core/widgets.dart';
+import 'package:maincra_api/pages/items_page.dart';
+import 'package:maincra_api/pages/my_items_page.dart';
 
-class Pantalla1 extends StatefulWidget {
-  const Pantalla1({super.key});
-
-  @override
-  State<Pantalla1> createState() => _Pantalla1State();
-}
-
-class _Pantalla1State extends State<Pantalla1> {
-  late Future<bool> futureItem;
-
-  late TextEditingController searchController;
-
-  @override
-  void initState() {
-    super.initState();
-    searchController = TextEditingController();
-    futureItem = checkIfEmpty();
-    // futureItem = fetchItem("Acacia Boat");
-    // print(futureItem);
-  }
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        foregroundColor: Colors.white, //color objetos appbar
-        title: Text("Maincra App :)"),
-      ),
-
-      backgroundColor: Colors.brown,
-
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              controller: searchController,
-              decoration: InputDecoration(
-                hintText: "Buscar Item lol xd omg en plan holy shit", // lol
-                hintStyle: TextStyle(color: Colors.white),
-                prefixIcon: Icon(Icons.search, color: Colors.white),
-                border: OutlineInputBorder(),
-              ),
-            ),
+      appBar: AppBar(title: Text("Welcome!"),),
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: GridView(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+            children: [
+              menuButton(context, "assets/chest.png", Pantalla1()),
+              menuButton(context, "assets/ender_chest.png", MyItemsPage()),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Container(
-              decoration: BoxDecoration(border: Border.all()),
-              child: TextButton(
-                child: const Text("Buscar item"),
-                onPressed: () {
-                  // futureItem = fetchItem(searchController.text);
-                },
-              ),
-            ),
-          ),
-
-          FutureBuilder(
-            future: futureItem,
-            builder: (context, snapshot) {
-              print(snapshot);
-              if (snapshot.hasData) {
-                return Card(
-                  child: Column(
-                    children: [
-                      // Text("${items.length}")
-                      Image.network(items[1].image),
-                      Padding(
-                        padding: const EdgeInsets.all(4),
-                        child: Container(
-                          decoration: ImageDecoration.fit,
-                          child: Text(items[1].name,
-                          )),
-                      ),
-                    ],
-                  ),
-                );
-              } else {
-                return Card(
-                  child: Text(
-                    "${snapshot.error}",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                );
-              }
-            },
-          ),
-        ],
+        ),
       ),
     );
   }
+}
+
+Widget menuButton(BuildContext context, String imagePath, Widget page) {
+  return Padding(
+    padding: const EdgeInsets.all(4.0),
+    child: Stack(
+      children: [
+        AppCustomWidget.itemSlot,
+        IconButton(
+          icon: Image.asset(
+            imagePath,
+            filterQuality: FilterQuality.none,
+            fit: BoxFit.cover,
+          ),
+          onPressed: () => Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (context) => page)
+          ), 
+        )
+      ],
+    ),
+  );
 }
