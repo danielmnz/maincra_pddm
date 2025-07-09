@@ -69,6 +69,7 @@ flutter:
     - assets/furnace.png
     - assets/grass_block.png
     - assets/item-bg.png
+    - assets/fondo1.png
 
   fonts:
     - family: Mojangles

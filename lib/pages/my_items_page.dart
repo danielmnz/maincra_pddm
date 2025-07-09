@@ -6,13 +6,22 @@ class MyItemsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("My Items"),),
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.favorite, color: Colors.white,),
+            SizedBox(width: 8,),
+            Text("My Items"),
+          ],
+        ),
+      ),
       body: Center(
         child: Column(
           children: [
             Padding(
               padding: EdgeInsets.fromLTRB(10, 25, 10, 0),
-              child: Text("TO BE ADDED",
+              child: Text("Out of Service (for now)",
                 style: TextStyle(
                   fontSize: 50,
                 ),
