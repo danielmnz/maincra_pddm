@@ -54,6 +54,18 @@ class Home extends StatelessWidget {
                 ),
               ),
             ),
+            
+            //"inventario" (profile)
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Card(
+                color: Colors.black,
+                elevation: 10, //sombra
+                child: Image.asset("STEVE_SILLA.gif", width: 100,),
+                //child: Image.asset("creeper.gif", width: 100,),
+                //child: Image.asset("zombie.gif", width: 100,),
+              ),
+            ),
           ],
         ),
       ),

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:maincra_api/entity/item.dart';
 
-Future<List<Item>> fetchItems() async {
+Future<List<Item>> fetchItems([String name = ""]) async {
   final response = await http.get(Uri.parse("https://minecraft-api.vercel.app/api/items"));
 
   if (response.statusCode == 200) {

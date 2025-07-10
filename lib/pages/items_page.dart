@@ -61,11 +61,14 @@ class _Pantalla1State extends State<Pantalla1> {
               child: TextField(
                 controller: searchController,
                 decoration: InputDecoration(
-                  hintText: "Buscar Item lol xd omg en plan holy shit", // lol
+                  hintText: "Buscar un item", // lol
                   hintStyle: TextStyle(color: Colors.white),
                   prefixIcon: Icon(Icons.search, color: Colors.white),
                   border: OutlineInputBorder(),
                 ),
+                onChanged: (text) {
+                  //print("el texto es $text");
+                },
               ),
             ),
             Padding(
@@ -75,7 +78,11 @@ class _Pantalla1State extends State<Pantalla1> {
                 child: TextButton(
                   child: const Text("Buscar item"),
                   onPressed: () {
-                    // futureItem = fetchItem(searchController.text);
+                    /*setState(() {
+                      //futureItem = fetchItems(searchController.text);
+                      //print("el texto es $futureItem");
+                    });*/
+                    //lo intenté pero no me mostraba el item sino la instancia de la lista (probar debug)
                   },
                 ),
               ),
