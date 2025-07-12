@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:maincra_api/core/audio_player.dart';
 import 'package:maincra_api/core/text_style.dart';
+import 'package:maincra_api/entity/profile.dart' as p;
 import 'package:maincra_api/pages/home.dart';
 
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  
   runApp(const MyApp());
 }
 
@@ -12,6 +18,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Audio.clearCache();
+    Audio.loadButton();
+    Audio.loadChestClose1();
+    Audio.loadEnderChestClose();
+    Audio.loadChestOpen();
+    Audio.loadEnderChestOpen();
+    p.p.loadFavItems();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'MaincraApp',
@@ -29,7 +44,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         fontFamily: "Mojangles",
       ),
-      home: Home(),
+      home: PopScope(
+        canPop: false,
+        child: Home()
+      ),
     );
   }
 }
